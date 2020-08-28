@@ -1,0 +1,26 @@
+<br/>
+<br/>
+<div class="container py-5">
+    <div class="col-md-12" style="margin: auto;">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"><h3 style="font-size:20px;">UserName</h3></th>
+              <th scope="col"><h3 style="font-size:20px;">Mark Scored</h3></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>
+                <h5 style="font-size:17px;">{{ user.username }}</h5>
+              </td>
+              <td>
+                <h5 style="font-size:17px;">{{ user.marks }}</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

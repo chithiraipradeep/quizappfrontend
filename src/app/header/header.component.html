@@ -1,0 +1,25 @@
+<header class="fixed-top">
+  <div class="container">
+    <mat-toolbar>
+      <h1>Online Quiz</h1>
+      <div class="spacer"></div>
+      <span *ngIf="isadmin==false&&isuser==false">
+        <button mat-button routerLink="/user">User Signup/Signin</button>
+        <button mat-button routerLink="/adminlogin">Admin Signin</button>
+      </span>
+
+      <span *ngIf="isadmin==true">
+        <button mat-button (click)="logout()">logout</button>
+        <button mat-button routerLink="/leaderboard">Leaderboard</button>
+        <button mat-button routerLink="/adminpanel">Add Question</button>
+      </span>
+
+      <span *ngIf="isuser==true">
+        <button mat-button (click)="logout()">logout</button>
+        <button mat-button routerLink="/userpanel">Take Quiz</button>
+        
+      </span>
+
+    </mat-toolbar>
+  </div>
+</header>

@@ -1,0 +1,210 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <h1 class="text-center">Question List</h1>
+            <div style="position: relative;margin:0 auto;text-align:right" >
+            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="height: 55px;" >Add New User</button>
+            </div>
+            <br/><br/>
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">S.no</th>
+                        <th class="text-center">Question</th>
+                        <th class="text-center">Option1</th>
+                        <th class="text-center">Option2</th>
+                        <th class="text-center">Option3</th>
+                        <th class="text-center">Option4</th>
+                        <th class="text-center">Answer</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of questions;let i=index">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ data.question }}</td>
+                        <td>{{ data.option1 }}</td>
+                        <td>{{ data.option2 }}</td>
+                        <td>{{ data.option3 }}</td>
+                        <td>{{ data.option4 }}</td>
+                        <td>{{ data.answer }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info mr-2"
+                                (click)="showEditUserForm(data)" data-toggle="modal" data-target="#exampleModal1">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="removeUser(data)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+           
+
+            <!-- <div class="mt-4">
+               
+
+                <form *ngIf="editUserForm">
+                    <h2>Edit User Details</h2>
+                    <p>First Name: <input type="text" name="firstName" [(ngModel)]="editedUser.firstName" /></p>
+                    <p>Last Name: <input type="text" name="lastName" [(ngModel)]="editedUser.lastName" /></p>
+                    <p>
+                        <button type="button" class="btn btn-primary mr-2" (click)="updateUser()">Submit</button>
+                        <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+                    </p>
+                </form>
+            </div> -->
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel">Add Questions</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="forms">
+                    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="question" style="font-size:20px">Question</label>
+                            <input type="text" formControlName="question" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.question.errors }" />
+                            <div *ngIf="submitted && f.question.errors" class="invalid-feedback">
+                                <div *ngIf="f.question.errors.required">question is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option1" style="font-size:20px">Option1</label>
+                            <input type="text" formControlName="option1" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option1.errors }" />
+                            <div *ngIf="submitted && f.option1.errors" class="invalid-feedback">
+                                <div *ngIf="f.option1.errors.required">option1 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option2" style="font-size:20px">Option2</label>
+                            <input type="text" formControlName="option2" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option2.errors }" />
+                            <div *ngIf="submitted && f.option2.errors" class="invalid-feedback">
+                                <div *ngIf="f.option2.errors.required">option2 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option3" style="font-size:20px">Option3</label>
+                            <input type="text" formControlName="option3" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option3.errors }" />
+                            <div *ngIf="submitted && f.option3.errors" class="invalid-feedback">
+                                <div *ngIf="f.option3.errors.required">option3 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option4" style="font-size:20px">Option4</label>
+                            <input type="text" formControlName="option4" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option4.errors }" />
+                            <div *ngIf="submitted && f.option4.errors" class="invalid-feedback">
+                                <div *ngIf="f.option4.errors.required">option4 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer" style="font-size:20px">Answer</label>
+                            <input type="tel" formControlName="answer" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.answer.errors }" />
+                            <div *ngIf="submitted && f.answer.errors" class="invalid-feedback">
+                                <div *ngIf="f.answer.errors.required">answer is required</div>
+                                <div *ngIf="f.answer.errors.pattern">Enter only the option number</div>
+                            </div>
+                        </div>
+                        <div style="position: relative;margin:0 auto;text-align:center">
+                            <button type="button" class="btn btn-primary" type="submit" style="height:55px">Save
+                                Question</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel1">Edit Questions</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="forms">
+                    <form [formGroup]="questionForm" (ngSubmit)="EditSubmit()">
+                        <div class="form-group">
+                            <label for="question" style="font-size:20px">Question</label>
+                            <input type="text" formControlName="question" [(ngModel)]="editedquestion.question" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.question.errors }" />
+                            <div *ngIf="submitted && f.question.errors" class="invalid-feedback">
+                                <div *ngIf="f.question.errors.required">question is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option1" style="font-size:20px">Option1</label>
+                            <input type="text" formControlName="option1" [(ngModel)]="editedquestion.option1" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option1.errors }" />
+                            <div *ngIf="submitted && f.option1.errors" class="invalid-feedback">
+                                <div *ngIf="f.option1.errors.required">option1 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option2" style="font-size:20px">Option2</label>
+                            <input type="text" formControlName="option2" [(ngModel)]="editedquestion.option2" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option2.errors }" />
+                            <div *ngIf="submitted && f.option2.errors" class="invalid-feedback">
+                                <div *ngIf="f.option2.errors.required">option2 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option3" style="font-size:20px">Option3</label>
+                            <input type="text" formControlName="option3" [(ngModel)]="editedquestion.option3" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option3.errors }" />
+                            <div *ngIf="submitted && f.option3.errors" class="invalid-feedback">
+                                <div *ngIf="f.option3.errors.required">option3 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="option4" style="font-size:20px">Option4</label>
+                            <input type="text" formControlName="option4" [(ngModel)]="editedquestion.option4" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.option4.errors }" />
+                            <div *ngIf="submitted && f.option4.errors" class="invalid-feedback">
+                                <div *ngIf="f.option4.errors.required">option4 is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer" style="font-size:20px">Answer</label>
+                            <input type="tel" formControlName="answer" [(ngModel)]="editedquestion.answer" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.answer.errors }" />
+                            <div *ngIf="submitted && f.answer.errors" class="invalid-feedback">
+                                <div *ngIf="f.answer.errors.required">Answer is required</div>
+                                <div *ngIf="f.answer.errors.pattern">Enter only the option number</div>
+                            </div>
+                        </div>
+                        <div style="position: relative;margin:0 auto;text-align:center">
+                            <button type="button" class="btn btn-primary" type="submit" style="height:55px">Save
+                                Question</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

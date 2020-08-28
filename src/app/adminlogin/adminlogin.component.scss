@@ -1,0 +1,93 @@
+.aligncenter {
+    position: relative;
+    margin: 0 auto;
+    top:150px;
+    width: 600px;
+}
+h3 {
+    position: relative;
+    text-align: center;
+    top: 25px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.center {
+    position: relative;
+    width: 600px;
+    height: auto;
+    top: 35px;
+    background: #ffffff;
+    border-radius: 3px;
+    margin: 0 auto;
+}
+
+.forms {
+    position: relative;
+    padding: 50px;
+    font-size:16px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 1.7rem 0.75rem;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    
+}
+
+.switch-field {
+    display: flex;
+    margin-bottom: 36px;
+    overflow: hidden;
+}
+
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.switch-field label {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 1;
+    width:90px;
+    text-align: center;
+    padding: 8px 16px;
+    margin-right: -1px;
+    background: #ffffff;
+    border: 1px solid #ececec;
+    transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+    cursor: pointer;
+}
+
+.switch-field input:checked + label {
+    background: rgba(237, 89, 1, 0.1);
+    color: #ED5901;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+    border-radius: 0 4px 4px 0;
+}

@@ -1,0 +1,32 @@
+::ng-deep.mat-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: indigo;
+    width: 100%;
+    color: antiquewhite;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.container, header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: indigo;
+    font-size: 54px;
+}
+
+button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 24px;
+    float: right;
+}
+
+.spacer {
+    display: flex;
+    flex: 1 1 auto;
+}

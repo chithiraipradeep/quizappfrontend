@@ -1,0 +1,69 @@
+<div class="aligncenter">
+    <mat-tab-group mat-stretch-tabs [selectedIndex]="selectedIndex">
+        <mat-tab label="Signin">
+            <div class="center">
+                <div class="forms">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="username" style="font-size:20px">Username</label>
+                            <input type="text" formControlName="username" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                <div *ngIf="f.username.errors.required">username is required</div>
+                                <div *ngIf="f.username.errors.pattern">username must be characters only</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" style="font-size:20px">Password</label>
+                            <input type="password" formControlName="password" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">password is required</div>
+                                <div *ngIf="f.password.errors.minlength">password must be 6 character long</div>
+                            </div>
+                        </div>
+                        <br />
+                        <button mat-button
+                            style="color:white;width:100%;height:55px;font-size:20px;text-align: center;background-color: #ED5901;">Signin</button>
+
+                    </form>
+                </div>
+                <div *ngIf="loginerror!=''&&loginerror!=null">
+                    <h3 style="color:red;text-align:center;font-size:20px">{{this.loginerror}}</h3>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Signup">
+            <div class="center">
+                <div class="forms">
+                    <form [formGroup]="registerForm" (ngSubmit)="register()">
+                        <div class="form-group">
+                            <label for="rusername" style="font-size:20px">Full Name</label>
+                            <input type="text" formControlName="rusername" class="form-control"
+                                [ngClass]="{ 'is-invalid': rsubmitted && rf.rusername.errors }" />
+                            <div *ngIf="rsubmitted && rf.rusername.errors" class="invalid-feedback">
+                                <div *ngIf="rf.rusername.errors.required">username is required</div>
+                                <div *ngIf="rf.rusername.errors.pattern">username must be characters only</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rpassword" style="font-size:20px">Password</label>
+                            <input type="password" formControlName="rpassword" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && rf.rpassword.errors }" />
+                            <div *ngIf="submitted && rf.rpassword.errors" class="invalid-feedback">
+                                <div *ngIf="rf.rpassword.errors.required">password is required</div>
+                                <div *ngIf="rf.rpassword.errors.minlength">password must be 6 character long</div>
+                            </div>
+                        </div>
+                        <br />
+                        <button mat-button
+                            style="color:white;width:100%;height:55px;font-size:20px;text-align: center;background-color: #ED5901;">Signup</button>
+                    </form>
+                </div>
+                <div *ngIf="error!=''&&error!=null">
+                    <h3 style="color:red;text-align:center;font-size:20px">{{this.error}}</h3>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
